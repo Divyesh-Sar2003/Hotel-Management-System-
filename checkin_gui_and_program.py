@@ -7,10 +7,7 @@
 import os
 import pickle
 import sys
-import os
 from subprocess import call
-
-import sys
 
 try:
     from Tkinter import *
@@ -32,7 +29,9 @@ def file_save():
     MOBILE_NO_PRO = details_list[2]
     ROOM_NO_PRO = details_list[3]
     PRICE_PRO = details_list[4]
+    print("Saving data to hotel.dat...")
     f = open("hotel.dat", "ab")
+    print(f"Data to save: {NAME_PRO}, {ADDRESS_PRO}, {MOBILE_NO_PRO}, {ROOM_NO_PRO}, {PRICE_PRO}")
     a=save(NAME_PRO,ADDRESS_PRO,MOBILE_NO_PRO,ROOM_NO_PRO,PRICE_PRO)
     pickle.dump(a,f,protocol=2)
     f.close()
@@ -124,6 +123,7 @@ class HOTEL_MANGMENT_checkin:
                     break
 
         def enter(self):
+            print(f"Setting guest details: Name={self.NAME}, Address={self.ADDERESS}, Mobile={self.MOBILE}, Days={self.DAYS}")
             self.name = self.NAME
             self.address = self.ADDERESS
             self.mobile_no = self.MOBILE
@@ -181,6 +181,7 @@ class HOTEL_MANGMENT_checkin:
             self.room = r
             f2.close()
 
+            print(f"Details list before saving: {details_list}")
             details_list.append(self.name)
             details_list.append(self.address)
             details_list.append(self.mobile_no)
