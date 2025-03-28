@@ -142,7 +142,7 @@ class save:
     def bill(self):
         print("\n")
         print("@@@@@@@@@  5 STAR HOTEL AND RESORTS  @@@@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@ HAUS KHAZ,  NEW DELHI @@@@@@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@ RAJKOT @@@@@@@@@@@@@@@@@@")
         print("@@@@@@@@@@ SERVING    GUEST   SINCE @@@@@@@@@@@@@@@@@")
         print("@@@@@@@@@@@@@@@    ###1950###       @@@@@@@@@@@@@@@@@")
         print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
@@ -201,11 +201,7 @@ while True:
     print("4.get info of any guest")
     print("5.EXIT")
     k = input("Enter choice:")
-
-
-
-
-
+    
     if k == "1":
         a = GUEST()
         f = open("hotel.dat", "ab")

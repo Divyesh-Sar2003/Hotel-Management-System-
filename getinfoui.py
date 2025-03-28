@@ -74,12 +74,25 @@ class HOTEL_MANAGEMENT:
                     if self.gettininfo == a:
                         n = 1
                         print("NAME-", "\t", "\t", s.name)
+                        self.Text1.insert(INSERT, "NAME-""\t")
+                        self.Text1.insert(INSERT, s.name)
                         print("\n")
                         print("ADDRESS-", "\t", s.address)
+                        self.Text1.insert(INSERT, "\n""ADDRESS-""\t")
+                        self.Text1.insert(INSERT, s.address)
                         print("\n")
                         print("MOBILE NO.-", "  ", s.mobile_no)
+                        self.Text1.insert(INSERT, "\n""MOBILE NO.-""\t")
+                        self.Text1.insert(INSERT, s.mobile_no)
                         print("\n")
                         print("HIS TOTAL BILL IS Rs.", s.price)
+                        self.Text1.insert(INSERT, "\n""HIS TOTAL BILL IS Rs.""\t")
+                        self.Text1.insert(INSERT, s.price)
+                        print("\n")
+                        print("HIS ROOM NUMBER IS ", s.room_no)
+                        self.Text1.insert(INSERT, "\n""HIS ROOM NUMBER IS ""\t")
+                        self.Text1.insert(INSERT, s.room_no)
+                        print("\n") 
                     elif EOFError:
                         if n == 0:
                             print("NO GUEST IN ROOM ", self.gettininfo)

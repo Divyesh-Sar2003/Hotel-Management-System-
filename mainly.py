@@ -4,7 +4,7 @@ from subprocess import call
 import sys
 
 try:
-    from Tkinter import *
+    from tkinter import *
 except ImportError:
     from tkinter import *
 

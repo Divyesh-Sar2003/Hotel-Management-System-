@@ -4,11 +4,21 @@ from tkinter import ttk
 # Read receipt details from file
 fo1 = open("recipt.txt", "r")
 list1 = fo1.readlines()
-fo1.close()
+# fo1.close()
 
 # Clean data
-del list1[1:6]  # Remove unnecessary lines
-list1 = [line.strip() for line in list1]
+# del list1[1:6]  # Remove unnecessary lines
+# list1 = [line.strip() for line in list1]
+del list1[1]
+del list1[2]
+del list1[3]
+del list1[4]
+del list1[5]
+list1[0]=list1[0][:-1]
+list1[1]=list1[1][:-1]
+list1[2]=list1[2][:-1]
+list1[3]=list1[3][:-1]
+list1[4]=list1[4][:-1]
 
 # Receipt details
 name, address, mobile, room_no, total_bill = list1[0], list1[1], list1[2], list1[3], list1[4]

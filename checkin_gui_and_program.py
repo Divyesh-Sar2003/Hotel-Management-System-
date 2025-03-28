@@ -7,7 +7,10 @@
 import os
 import pickle
 import sys
+import os
 from subprocess import call
+
+import sys
 
 try:
     from Tkinter import *
@@ -29,9 +32,7 @@ def file_save():
     MOBILE_NO_PRO = details_list[2]
     ROOM_NO_PRO = details_list[3]
     PRICE_PRO = details_list[4]
-    print("Saving data to hotel.dat...")
     f = open("hotel.dat", "ab")
-    print(f"Data to save: {NAME_PRO}, {ADDRESS_PRO}, {MOBILE_NO_PRO}, {ROOM_NO_PRO}, {PRICE_PRO}")
     a=save(NAME_PRO,ADDRESS_PRO,MOBILE_NO_PRO,ROOM_NO_PRO,PRICE_PRO)
     pickle.dump(a,f,protocol=2)
     f.close()
@@ -44,6 +45,11 @@ def file_save():
     fo.close()
     call(["python", "recipt.py"])
     restart_program()
+
+
+
+
+
 
 u = list()
 Delux = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
@@ -59,6 +65,7 @@ def restart_program():
     python = sys.executable
     os.execl(python, python, * sys.argv)
 
+
 class save:
     def __init__(self,NAME_PRO,ADDRESS_PRO,MOBILE_NO_PRO,ROOM_NO_PRO,PRICE_PRO):
         self.name=NAME_PRO
@@ -67,7 +74,11 @@ class save:
         self.room_no=ROOM_NO_PRO
         self.price=PRICE_PRO
 
+
+
 class HOTEL_MANGMENT_checkin:
+
+
     def __init__(self):
         self.NAME=""
         self.ADDERESS=""
@@ -76,36 +87,47 @@ class HOTEL_MANGMENT_checkin:
         self.price=0
         self.room=0
 
+
+
+
+
         def chk_name():
             while True:
+
                 self.k = str(self.name.get())
+
                 a = self.k.isdigit()
                 if len(self.k) != 0 and a != True:
                     self.NAME=self.k
-                    self.Text1.insert(INSERT, "Name has been Added Successfully""\n")
+                    self.Text1.insert(INSERT, "name has been inputed""\n")
                     break
                 else:
                     self.Text1.insert(INSERT, "invalid input please input a valid name""\n")
+
                     break
 
         def chk_add():
             while True:
                 self.g = str(self.addr.get())
+
+
                 ak = self.g.isdigit()
                 if len(self.g)!= 0 and ak!=True:
                     self.ADDERESS=self.g
-                    self.Text1.insert(INSERT, "Address has been Added Successfully""\n")
+                    self.Text1.insert(INSERT, "address has been inputed""\n")
                     break
                 else:
                     self.Text1.insert(INSERT, "invalid input please input a valid address""\n")
+
                     break
 
         def chk_mo():
             while True:
+
                 self.h = str(self.mobile.get())
                 if self.h.isdigit() == True and len(self.h) != 0 and len(self.h) == 10:
                     self.MOBILE = self.h
-                    self.Text1.insert(INSERT, "Mobile Number has been Added Successfully""\n")
+                    self.Text1.insert(INSERT, "mobile number has been inputed""\n")
                     break
                 else:
                     self.Text1.insert(INSERT, "invalid input please input a valid mobile number""\n")
@@ -113,23 +135,25 @@ class HOTEL_MANGMENT_checkin:
 
         def chk_day():
             while True:
+
                 self.l = str(self.days.get())
+
                 if self.l.isdigit() == True and len(self.l) != 0:
                     self.DAYS = int(self.l)
-                    self.Text1.insert(INSERT, "Days has been Added Successfully""\n")
+                    self.Text1.insert(INSERT, "days has been inputed""\n")
                     break
                 else:
                     self.Text1.insert(INSERT, "invalid input ""\n")
                     break
 
         def enter(self):
-            print(f"Setting guest details: Name={self.NAME}, Address={self.ADDERESS}, Mobile={self.MOBILE}, Days={self.DAYS}")
             self.name = self.NAME
             self.address = self.ADDERESS
             self.mobile_no = self.MOBILE
             self.no_of_days = int(self.DAYS)
 
         def tor(self):
+
             if self.ch == 1:
                 self.price = self.price + (2000 * self.no_of_days)
                 m[0] = 1
@@ -152,6 +176,7 @@ class HOTEL_MANGMENT_checkin:
                 self.Text1.insert(INSERT, "10% discount""\n")
 
         def bill(self):
+
             if m[0] == 1:
                 a = Delux
             elif m[0] == 2:
@@ -166,9 +191,11 @@ class HOTEL_MANGMENT_checkin:
             try:
                 while True:
                     s = pickle.load(f2)
+
                     k = s.room_no
                     G.append(k)
                     continue
+
             except EOFError:
                 pass
 
@@ -181,48 +208,97 @@ class HOTEL_MANGMENT_checkin:
             self.room = r
             f2.close()
 
-            print(f"Details list before saving: {details_list}")
             details_list.append(self.name)
             details_list.append(self.address)
             details_list.append(self.mobile_no)
             details_list.append(self.room)
             details_list.append(self.price)
 
+
+
+
             file_save()
 
+
+
         def submit_clicked():
-            if self.var.get() == 1:
-                self.ch = 1
-                self.p = 2
+            if self.var1.get()==1 and self.var2.get()==0 and self.var3.get()==0 and self.var4.get()==0 and self.var5.get()==1 and self.var6.get()==0:
+                self.ch=1
+                self.p=2
+
                 enter(self)
                 tor(self)
                 payment_option(self)
                 bill(self)
-            elif self.var.get() == 2:
+
+
+            elif self.var1.get() == 1 and self.var2.get() == 0 and self.var3.get() == 0 and self.var4.get() == 0 and self.var5.get() == 0 and self.var6.get() == 1:
+                self.ch = 1
+                self.p = 1
+
+                enter(self)
+                tor(self)
+                payment_option(self)
+                bill(self)
+            elif self.var1.get() == 0 and self.var2.get() == 1 and self.var3.get() == 0 and self.var4.get() == 0 and self.var5.get() == 0 and self.var6.get() == 1:
                 self.ch = 2
                 self.p = 1
+
                 enter(self)
                 tor(self)
                 payment_option(self)
                 bill(self)
-            elif self.var.get() == 3:
+            elif self.var1.get() == 0 and self.var2.get() == 1 and self.var3.get() == 0 and self.var4.get() == 0 and self.var5.get() == 1 and self.var6.get() ==0 :
+                self.ch = 2
+                self.p = 2
+
+                enter(self)
+                tor(self)
+                payment_option(self)
+                bill(self)
+            elif self.var1.get() == 0 and self.var2.get() == 0 and self.var3.get() == 1 and self.var4.get() == 0 and self.var5.get() == 0 and self.var6.get() == 1:
                 self.ch = 3
                 self.p = 1
+
                 enter(self)
                 tor(self)
                 payment_option(self)
                 bill(self)
-            elif self.var.get() == 4:
+            elif self.var1.get() == 0 and self.var2.get() == 0 and self.var3.get() == 1 and self.var4.get() == 0 and self.var5.get() == 1 and self.var6.get() == 0:
+                self.ch = 3
+                self.p = 2
+
+                enter(self)
+                tor(self)
+                payment_option(self)
+                bill(self)
+
+            elif self.var1.get() == 0 and self.var2.get() == 0 and self.var3.get() == 0 and self.var4.get() == 1 and self.var5.get() == 0 and self.var6.get() == 1:
                 self.ch = 4
                 self.p = 1
+
                 enter(self)
                 tor(self)
                 payment_option(self)
                 bill(self)
+            elif self.var1.get() == 0 and self.var2.get() == 0 and self.var3.get() == 0 and self.var4.get() == 1 and self.var5.get() == 1 and self.var6.get() == 0:
+                self.ch = 4
+                self.p = 2
+
+                enter(self)
+                tor(self)
+                payment_option(self)
+                bill(self)
+
             else:
                 self.Text1.insert(INSERT, "invalid choice please input a valid choice""\n")
 
+
+
+
+
         root = Tk()
+
 
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
@@ -249,7 +325,7 @@ class HOTEL_MANGMENT_checkin:
             "roman -underline 0 -overstrike 0"
 
         root.geometry("1069x742")
-        root.title("HOTEL MANAGMENT")
+        root.title("HOTEL MANGMENT")
         root.configure(background="#ffffff")
         root.configure(highlightbackground="#ffffff")
         root.configure(highlightcolor="black")
@@ -310,6 +386,8 @@ class HOTEL_MANGMENT_checkin:
         self.menubar = Menu(root,font=font9,bg=_bgcolor,fg=_fgcolor)
         root.configure(menu = self.menubar)
 
+
+
         self.Frame2 = Frame(root)
         self.Frame2.place(relx=0.03, rely=0.18, relheight=0.46, relwidth=0.93)
         self.Frame2.configure(relief=GROOVE)
@@ -344,6 +422,8 @@ class HOTEL_MANGMENT_checkin:
         self.Label4.configure(highlightcolor="black")
         self.Label4.configure(text='''ENTER YOUR NUMBER''')
 
+
+
         self.Entry3 = Entry(self.Frame2)
         self.name=StringVar()
         self.Entry3.place(relx=0.47, rely=0.05,height=34, relwidth=0.43)
@@ -358,6 +438,7 @@ class HOTEL_MANGMENT_checkin:
         self.Entry3.configure(selectforeground="black")
         self.Entry3.configure(textvariable=self.name)
 
+
         self.Entry4 = Entry(self.Frame2)
         self.mobile=StringVar()
         self.Entry4.place(relx=0.47, rely=0.31,height=34, relwidth=0.43)
@@ -371,6 +452,7 @@ class HOTEL_MANGMENT_checkin:
         self.Entry4.configure(selectbackground="#e6e6e6")
         self.Entry4.configure(selectforeground="black")
         self.Entry4.configure(textvariable=self.mobile)
+
 
         self.Entry5 = Entry(self.Frame2)
         self.addr = StringVar()
@@ -452,43 +534,73 @@ class HOTEL_MANGMENT_checkin:
         self.Message6.configure(text=''':''')
         self.Message6.configure(width=36)
 
-        self.var = IntVar()  # Variable to hold the selected room type
+        self.Checkbutton1 = Checkbutton(self.Frame2)
+        self.var1 = IntVar()
+        self.Checkbutton1.place(relx=0.15, rely=0.58, relheight=0.17
+                , relwidth=0.14)
+        self.Checkbutton1.configure(activebackground="#ffffff")
+        self.Checkbutton1.configure(activeforeground="#000000")
+        self.Checkbutton1.configure(background="#ffffff")
+        self.Checkbutton1.configure(disabledforeground="#bfbfbf")
+        self.Checkbutton1.configure(font=font14)
+        self.Checkbutton1.configure(foreground="#000000")
+        self.Checkbutton1.configure(highlightbackground="#ffffff")
+        self.Checkbutton1.configure(highlightcolor="black")
+        self.Checkbutton1.configure(justify=LEFT)
+        self.Checkbutton1.configure(text='''DELUXE''')
+        self.Checkbutton1.configure(variable=self.var1)
 
-        self.Radiobutton1 = Radiobutton(self.Frame2, text='DELUXE', variable=self.var, value=1)
-        self.Radiobutton1.place(relx=0.15, rely=0.58, relheight=0.17, relwidth=0.14)
-        self.Radiobutton1.configure(activebackground="#ffffff")
-        self.Radiobutton1.configure(activeforeground="#000000")
-        self.Radiobutton1.configure(background="#ffffff")
-        self.Radiobutton1.configure(disabledforeground="#bfbfbf")
-        self.Radiobutton1.configure(font=font14)
-        self.Radiobutton1.configure(foreground="#000000")
 
-        self.Radiobutton2 = Radiobutton(self.Frame2, text='FULL DELUXE', variable=self.var, value=2)
-        self.Radiobutton2.place(relx=0.15, rely=0.72, relheight=0.11, relwidth=0.21)
-        self.Radiobutton2.configure(activebackground="#ffffff")
-        self.Radiobutton2.configure(activeforeground="#000000")
-        self.Radiobutton2.configure(background="#ffffff")
-        self.Radiobutton2.configure(disabledforeground="#bfbfbf")
-        self.Radiobutton2.configure(font=font13)
-        self.Radiobutton2.configure(foreground="#000000")
 
-        self.Radiobutton3 = Radiobutton(self.Frame2, text='GENERAL', variable=self.var, value=3)
-        self.Radiobutton3.place(relx=0.5, rely=0.6, relheight=0.11, relwidth=0.16)
-        self.Radiobutton3.configure(activebackground="#ffffff")
-        self.Radiobutton3.configure(activeforeground="#000000")
-        self.Radiobutton3.configure(background="#ffffff")
-        self.Radiobutton3.configure(disabledforeground="#bfbfbf")
-        self.Radiobutton3.configure(font=font13)
-        self.Radiobutton3.configure(foreground="#000000")
 
-        self.Radiobutton4 = Radiobutton(self.Frame2, text='JOINT', variable=self.var, value=4)
-        self.Radiobutton4.place(relx=0.5, rely=0.71, relheight=0.11, relwidth=0.12)
-        self.Radiobutton4.configure(activebackground="#ffffff")
-        self.Radiobutton4.configure(activeforeground="#000000")
-        self.Radiobutton4.configure(background="#ffffff")
-        self.Radiobutton4.configure(disabledforeground="#bfbfbf")
-        self.Radiobutton4.configure(font=font13)
-        self.Radiobutton4.configure(foreground="#000000")
+
+        self.Checkbutton2 = Checkbutton(self.Frame2)
+        self.var2 = IntVar()
+        self.Checkbutton2.place(relx=0.15, rely=0.72, relheight=0.11
+                , relwidth=0.21)
+        self.Checkbutton2.configure(activebackground="#ffffff")
+        self.Checkbutton2.configure(activeforeground="#000000")
+        self.Checkbutton2.configure(background="#ffffff")
+        self.Checkbutton2.configure(disabledforeground="#bfbfbf")
+        self.Checkbutton2.configure(font=font13)
+        self.Checkbutton2.configure(foreground="#000000")
+        self.Checkbutton2.configure(highlightbackground="#ffffff")
+        self.Checkbutton2.configure(highlightcolor="black")
+        self.Checkbutton2.configure(justify=LEFT)
+        self.Checkbutton2.configure(text='''FULL DELUXE''')
+        self.Checkbutton2.configure(variable=self.var2)
+
+        self.Checkbutton3 = Checkbutton(self.Frame2)
+        self.var3 = IntVar()
+        self.Checkbutton3.place(relx=0.5, rely=0.6, relheight=0.11
+                , relwidth=0.16)
+        self.Checkbutton3.configure(activebackground="#ffffff")
+        self.Checkbutton3.configure(activeforeground="#000000")
+        self.Checkbutton3.configure(background="#ffffff")
+        self.Checkbutton3.configure(disabledforeground="#bfbfbf")
+        self.Checkbutton3.configure(font=font13)
+        self.Checkbutton3.configure(foreground="#000000")
+        self.Checkbutton3.configure(highlightbackground="#ffffff")
+        self.Checkbutton3.configure(highlightcolor="black")
+        self.Checkbutton3.configure(justify=LEFT)
+        self.Checkbutton3.configure(text='''GENERAL''')
+        self.Checkbutton3.configure(variable=self.var3)
+
+        self.Checkbutton4 = Checkbutton(self.Frame2)
+        self.var4 = IntVar()
+        self.Checkbutton4.place(relx=0.5, rely=0.71, relheight=0.11
+                , relwidth=0.12)
+        self.Checkbutton4.configure(activebackground="#ffffff")
+        self.Checkbutton4.configure(activeforeground="#000000")
+        self.Checkbutton4.configure(background="#ffffff")
+        self.Checkbutton4.configure(disabledforeground="#bfbfbf")
+        self.Checkbutton4.configure(font=font13)
+        self.Checkbutton4.configure(foreground="#000000")
+        self.Checkbutton4.configure(highlightbackground="#ffffff")
+        self.Checkbutton4.configure(highlightcolor="black")
+        self.Checkbutton4.configure(justify=LEFT)
+        self.Checkbutton4.configure(text='''JOINT''')
+        self.Checkbutton4.configure(variable=self.var4)
 
         self.Checkbutton5 = Checkbutton(self.Frame2)
         self.var5 = IntVar()
@@ -532,6 +644,45 @@ class HOTEL_MANGMENT_checkin:
         self.Message7.configure(text='''-''')
         self.Message7.configure(width=41)
 
+        self.Button1 = Button(self.Frame2)
+        self.Button1.place(relx=0.91, rely=0.05, height=33, width=43)
+        self.Button1.configure(activebackground="#ffffff")
+        self.Button1.configure(activeforeground="#000000")
+        self.Button1.configure(background="#ffffff")
+        self.Button1.configure(disabledforeground="#bfbfbf")
+        self.Button1.configure(foreground="#000000")
+        self.Button1.configure(highlightbackground="#ffffff")
+        self.Button1.configure(highlightcolor="black")
+        self.Button1.configure(pady="0")
+        self.Button1.configure(text='''OK''')
+        self.Button1.configure(command=chk_name)
+
+        self.Button2 = Button(self.Frame2)
+        self.Button2.place(relx=0.91, rely=0.18, height=33, width=43)
+        self.Button2.configure(activebackground="#ffffff")
+        self.Button2.configure(activeforeground="#000000")
+        self.Button2.configure(background="#ffffff")
+        self.Button2.configure(disabledforeground="#bfbfbf")
+        self.Button2.configure(foreground="#000000")
+        self.Button2.configure(highlightbackground="#ffffff")
+        self.Button2.configure(highlightcolor="black")
+        self.Button2.configure(pady="0")
+        self.Button2.configure(text='''OK''')
+        self.Button2.configure(command=chk_add)
+
+        self.Button3 = Button(self.Frame2)
+        self.Button3.place(relx=0.91, rely=0.31, height=33, width=43)
+        self.Button3.configure(activebackground="#ffffff")
+        self.Button3.configure(activeforeground="#000000")
+        self.Button3.configure(background="#ffffff")
+        self.Button3.configure(disabledforeground="#bfbfbf")
+        self.Button3.configure(foreground="#000000")
+        self.Button3.configure(highlightbackground="#ffffff")
+        self.Button3.configure(highlightcolor="black")
+        self.Button3.configure(pady="0")
+        self.Button3.configure(text='''OK''')
+        self.Button3.configure(command=chk_mo)
+
         self.Button4 = Button(self.Frame2)
         self.Button4.place(relx=0.76, rely=0.66, height=83, width=156)
         self.Button4.configure(activebackground="#ffffff")
@@ -554,6 +705,7 @@ class HOTEL_MANGMENT_checkin:
         self.Label1.configure(foreground="#000000")
         self.Label1.configure(text='''NUMBER OF DAYS''')
 
+
         self.Entry1 = Entry(self.Frame2)
         self.days=StringVar()
         self.Entry1.place(relx=0.47, rely=0.43, height=34, relwidth=0.43)
@@ -575,7 +727,22 @@ class HOTEL_MANGMENT_checkin:
         self.Message8.configure(text=''':''')
         self.Message8.configure(width=26)
 
+        self.Button5 = Button(self.Frame2)
+        self.Button5.place(relx=0.91, rely=0.43, height=33, width=43)
+        self.Button5.configure(activebackground="#ffffff")
+        self.Button5.configure(activeforeground="#000000")
+        self.Button5.configure(background="#ffffff")
+        self.Button5.configure(disabledforeground="#bfbfbf")
+        self.Button5.configure(foreground="#000000")
+        self.Button5.configure(highlightbackground="#ffffff")
+        self.Button5.configure(highlightcolor="black")
+        self.Button5.configure(pady="0")
+        self.Button5.configure(text='''OK''')
+        self.Button5.configure(command=chk_day)
+
+
         root.mainloop()
+
 
 if __name__ == '__main__':
     hotel=HOTEL_MANGMENT_checkin()
