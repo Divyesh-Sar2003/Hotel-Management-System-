@@ -1,5 +1,9 @@
 import tkinter as tk
+import os
 from tkinter import ttk
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from datetime import datetime
 
 # Read receipt details from file
 fo1 = open("recipt.txt", "r")
@@ -24,7 +28,51 @@ list1[4]=list1[4][:-1]
 name, address, mobile, room_no, total_bill = list1[0], list1[1], list1[2], list1[3], list1[4]
 
 def print_receipt():
-    print("Printing receipt...")  # Placeholder for print functionality
+    # Create a folder named "Receipts" if it doesn't exist
+    folder_name = "Receipts"
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+
+    # Generate a unique file name using the guest's name and current timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    pdf_file = os.path.join(folder_name, f"receipt_{name}_{timestamp}.pdf")
+
+    c = canvas.Canvas(pdf_file, pagesize=letter)
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(200, 750, "5STAR HOTEL AND RESORTS")
+    c.setFont("Helvetica", 12)
+    c.drawString(220, 730, "Serving Guests Since 1998")
+    c.line(50, 720, 550, 720)
+
+    # Add receipt details
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(50, 700, "Name:")
+    c.setFont("Helvetica", 12)
+    c.drawString(150, 700, name)
+
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(50, 680, "Address:")
+    c.setFont("Helvetica", 12)
+    c.drawString(150, 680, address)
+
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(50, 660, "Mobile No.:")
+    c.setFont("Helvetica", 12)
+    c.drawString(150, 660, mobile)
+
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(50, 640, "Room No.:")
+    c.setFont("Helvetica", 12)
+    c.drawString(150, 640, room_no)
+
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(50, 620, "Total Bill (Rs.):")
+    c.setFont("Helvetica", 12)
+    c.drawString(150, 620, total_bill)
+
+    # Save PDF
+    c.save()
+    print(f"Receipt saved as {pdf_file}")
 
 # GUI Window
 root = tk.Tk()
